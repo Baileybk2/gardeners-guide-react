@@ -1,5 +1,6 @@
 import { useState, createContext, useEffect } from "react"
 import { Routes, Route } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import NavBar from "./components/NavBar/NavBar"
 import Landing from "./components/Landing/Landing"
 import Dashboard from "./components/Dashboard/Dashboard"
@@ -8,6 +9,7 @@ import SigninForm from "./components/SigninForm/SigninForm"
 import * as authService from "../src/services/authService"
 import PlantList from "./components/PlantList/PlantList"
 import * as plantService from "./services/plantService"
+import PlantDetails from "./components/PlantDetails/PlantDetails"
 
 export const AuthedUserContext = createContext(null)
 
@@ -37,6 +39,7 @@ const App = () => {
             <>
               <Route path="/" element={<Dashboard user={user} />} />
               <Route path="/plants" element={<PlantList plants={plants} />} />
+              <Route path="/plants/:plantId" element={<PlantDetails />} />
             </>
           ) : (
             <Route path="/" element={<Landing />} />
