@@ -6,7 +6,7 @@ const PlantList = (props) => {
       {props.plants.map((plant) => (
         <Link key={plant._id} to={`/plants/${plant._id}`}>
           <h2>
-            {plant.name} {plant.img}
+            {plant.name} <img src={plant.img} alt={plant.name} />
           </h2>
         </Link>
       ))}
