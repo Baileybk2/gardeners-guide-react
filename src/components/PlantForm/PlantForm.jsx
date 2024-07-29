@@ -1,4 +1,6 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
+import * as plantService from "../../services/plantService"
 
 const PlantForm = (props) => {
   const [formData, setFormData] = useState({
@@ -13,13 +15,27 @@ const PlantForm = (props) => {
     growTime: "",
   })
 
+  const { plantId } = useParams()
+
+  useEffect(() => {
+    const fetchPlant = async () => {
+      const plantData = await plantService.show(plantId)
+      setFormData(plantData)
+    }
+    if (plantId) fetchPlant()
+  }, [plantId])
+
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    props.handleAddPlant(formData)
+    if (plantId) {
+      props.handleUpdatePlant(plantId, formData)
+    } else {
+      props.handleAddPlant(formData)
+    }
   }
 
   return (
@@ -40,6 +56,7 @@ const PlantForm = (props) => {
           type="text"
           id="img"
           name="img"
+          value={formData.img}
           onChange={handleChange}
         />
         <label htmlFor="whenToWater">When to Water:</label>

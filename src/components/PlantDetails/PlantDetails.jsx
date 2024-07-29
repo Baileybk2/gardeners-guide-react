@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { AuthedUserContext } from "../../App"
 import { useState, useEffect, useContext } from "react"
 import * as plantService from "../../services/plantService"
+import { Link } from "react-router-dom"
 
 const PlantDetails = (props) => {
   const { plantId } = useParams()
@@ -28,7 +29,8 @@ const PlantDetails = (props) => {
         <h1>{plant.name}</h1>
         <p>{plant.img}</p>
       </header>
-      <p>Details:</p>
+      <p>Plant Details:</p>
+      <Link to={`/plants/${plantId}/edit`}>Edit Plant</Link>
       <button onClick={() => props.handleDeletePlant(plantId)}>Delete</button>
     </main>
   )

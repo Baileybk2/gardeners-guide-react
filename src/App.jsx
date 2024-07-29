@@ -40,6 +40,14 @@ const App = () => {
     navigate("/plants")
   }
 
+  const handleUpdatePlant = async (plantId, plantFormData) => {
+    const updatedPlant = await plantService.update(plantId, plantFormData)
+    setPlants(
+      plants.map((plant) => (plantId === plant._id ? updatedPlant : plant))
+    )
+    navigate(`plants/${plantId}`)
+  }
+
   const handleSignout = () => {
     authService.signout()
     setUser(null)
@@ -61,6 +69,10 @@ const App = () => {
               <Route
                 path="/plants/new"
                 element={<PlantForm handleAddPlant={handleAddPlant} />}
+              />
+              <Route
+                path="/plants/:plantId/edit"
+                element={<PlantForm handleUpdatePlant={handleUpdatePlant} />}
               />
             </>
           ) : (
