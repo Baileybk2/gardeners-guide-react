@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 const PlantList = (props) => {
   return (
     <main>
+      <h1>Your Plants</h1>
       {props.plants.map((plant) => (
         <Link key={plant._id} to={`/plants/${plant._id}`}>
           <h2>

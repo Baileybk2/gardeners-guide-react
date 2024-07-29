@@ -1,39 +1,39 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import * as authService from '../../services/authService';
+import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import * as authService from "../../services/authService"
 
 const SigninForm = (props) => {
-  const navigate = useNavigate();
-  const [message, setMessage] = useState(['']);
+  const navigate = useNavigate()
+  const [message, setMessage] = useState([""])
   const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-  });
+    username: "",
+    password: "",
+  })
 
   const updateMessage = (msg) => {
-    setMessage(msg);
-  };
+    setMessage(msg)
+  }
 
   const handleChange = (e) => {
-    updateMessage('');
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    updateMessage("")
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      const user = await authService.signin(formData);
-      console.log(user);
-      props.setUser(user);
-      navigate('/');
+      const user = await authService.signin(formData)
+      console.log(user)
+      props.setUser(user)
+      navigate("/")
     } catch (err) {
-      updateMessage(err.message);
+      updateMessage(err.message)
     }
-  };
+  }
 
   return (
     <main>
-      <h1>Log In</h1>
+      <h1>Sign In</h1>
       <p>{message}</p>
       <form autoComplete="off" onSubmit={handleSubmit}>
         <div>
@@ -66,7 +66,7 @@ const SigninForm = (props) => {
         </div>
       </form>
     </main>
-  );
-};
+  )
+}
 
-export default SigninForm;
+export default SigninForm
