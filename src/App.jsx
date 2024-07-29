@@ -32,7 +32,12 @@ const App = () => {
     const newPlant = await plantService.create(plantFormData)
     setPlants([newPlant, ...plants])
     navigate("/plants")
-    fetchAllPlants()
+  }
+
+  const handleDeletePlant = async (plantId) => {
+    const deletedPlant = await plantService.deletePlant(plantId)
+    setPlants(plants.filter((plant) => plant._id !== deletedPlant._Id))
+    navigate("/plants")
   }
 
   const handleSignout = () => {
@@ -49,7 +54,10 @@ const App = () => {
             <>
               <Route path="/" element={<Dashboard user={user} />} />
               <Route path="/plants" element={<PlantList plants={plants} />} />
-              <Route path="/plants/:plantId" element={<PlantDetails />} />
+              <Route
+                path="/plants/:plantId"
+                element={<PlantDetails handleDeletePlant={handleDeletePlant} />}
+              />
               <Route
                 path="/plants/new"
                 element={<PlantForm handleAddPlant={handleAddPlant} />}
