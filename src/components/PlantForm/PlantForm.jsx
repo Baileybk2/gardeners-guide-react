@@ -5,7 +5,7 @@ import * as plantService from "../../services/plantService"
 const PlantForm = (props) => {
   const [formData, setFormData] = useState({
     name: "",
-    img: "",
+    img: "https://cdn-icons-png.flaticon.com/512/739/739249.png",
     whenToWater: [
       {  dateOfDay: "" }
     ],
@@ -139,6 +139,7 @@ const PlantForm = (props) => {
           name="whenToWater"
           min = "1"
           max = "31"
+        
           value={formData.whenToWater.dateOfDay}
           onChange={handleChange}
         />
