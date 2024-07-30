@@ -27,7 +27,7 @@ const PlantDetails = (props) => {
     <main>
       <h1>{plant.name}</h1>
       <img src={plant.img} alt={plant.name} />
-      <p>How Much Sun: {plant.howMuchSun}</p>
+      <p>Light (hrs/day): {plant.howMuchSun}</p>
       <p>Type of Light: {plant.typeOfLight}</p>
       <p>Best Season to Plant: {plant.bestSeasonToPlant}</p>
       <p>Indoor/Outdoor: {plant.indoorOutdoor}</p>
