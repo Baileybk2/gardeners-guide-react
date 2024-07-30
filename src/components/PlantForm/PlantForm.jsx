@@ -6,8 +6,12 @@ const PlantForm = (props) => {
   const [formData, setFormData] = useState({
     name: "",
     img: "",
-    whenToWater: [],
-    whenToFertilize: [],
+    whenToWater: [
+      {  dateOfDay: "" }
+    ],
+    whenToFertilize: [
+      { dateOfDay: "", conditionOfSoil: "" }
+    ],
     howMuchSun: "",
     typeOfLight: "Direct Sunlight",
     bestSeasonToPlant: "Spring",
@@ -116,6 +120,38 @@ const PlantForm = (props) => {
           value={formData.growTime || ""}
           onChange={handleChange}
         />
+
+        <label htmlFor="whenToFertilize">When to Fertilize:</label>
+        <input
+          required
+          type="date"
+          id="whenToFertilize"
+          name="whenToWater"
+          value={formData.whenToFertilize.dateOfDay}
+          onChange={handleChange}
+        />
+
+        <label htmlFor="whenToWater">Date of Day:</label>
+        <input
+          required
+          type="number"
+          id="whenToWater"
+          name="whenToWater"
+          min = "1"
+          max = "31"
+          value={formData.whenToWater.dateOfDay}
+          onChange={handleChange}
+        />
+        
+        <label htmlFor="conditionOfSoil">Condition of Soil:</label>
+        <textarea 
+          required
+          type="text"
+          id="conditionOfSoil"
+          name="conditionOfSoil"
+          value={formData.whenToWater.conditionOfSoil}
+          onChange={handleChange}
+        ></textarea>
 
         <button type="submit">Submit Plant</button>
       </form>
