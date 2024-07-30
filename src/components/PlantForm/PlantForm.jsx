@@ -50,27 +50,13 @@ const PlantForm = (props) => {
           value={formData.name}
           onChange={handleChange}
         />
-        <label htmlFor="img">Image:</label>
+        <label htmlFor="img">Image URL:</label>
         <input
           required
           type="text"
           id="img"
           name="img"
           value={formData.img}
-          onChange={handleChange}
-        />
-        <label htmlFor="whenToWater">When to Water:</label>
-        <input
-          id="whenToWater"
-          name="whenToWater"
-          value={formData.whenToWater}
-          onChange={handleChange}
-        />
-        <label htmlFor="whenToFertilize">When to Fertilize:</label>
-        <input
-          id="whenToFertilize"
-          name="whenToFertilize"
-          value={formData.whenToFertilize}
           onChange={handleChange}
         />
         <label htmlFor="howMuchSun">How Much Sun:</label>
@@ -82,21 +68,31 @@ const PlantForm = (props) => {
           onChange={handleChange}
         />
         <label htmlFor="typeOfLight">Type of Light:</label>
-        <input
-          type="text"
+        <select
           id="typeOfLight"
           name="typeOfLight"
           value={formData.typeOfLight}
           onChange={handleChange}
-        />
+        >
+          <option value="Direct Sunlight">Direct Sunlight</option>
+          <option value="Indirect Light">Indirect Light</option>
+          <option value="Medium Light">Medium Light</option>
+          <option value="Low Light">Low Light</option>
+        </select>
+
         <label htmlFor="bestSeasonToPlant">Best Season to Plant:</label>
-        <input
-          type="text"
+        <select
           id="bestSeasonToPlant"
           name="bestSeasonToPlant"
           value={formData.bestSeasonToPlant}
           onChange={handleChange}
-        />
+        >
+          <option value="Spring">Spring</option>
+          <option value="Summer">Summer</option>
+          <option value="Fall">Fall</option>
+          <option value="Winter">Winter</option>
+        </select>
+
         <label htmlFor="indoorOutdoor">Indoor/Outdoor:</label>
         <select
           id="indoorOutdoor"
@@ -115,6 +111,7 @@ const PlantForm = (props) => {
           value={formData.growTime}
           onChange={handleChange}
         />
+
         <button type="submit">Submit Plant</button>
       </form>
     </main>

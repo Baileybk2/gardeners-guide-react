@@ -28,6 +28,7 @@ const App = () => {
   useEffect(() => {
     if (user) fetchAllPlants()
   }, [user])
+  // add else statement to redirect to sigin page?
 
   const handleAddPlant = async (plantFormData) => {
     await plantService.create(plantFormData)

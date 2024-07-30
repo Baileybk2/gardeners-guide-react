@@ -25,11 +25,14 @@ const PlantDetails = (props) => {
   if (!plant) return <main>Loading...</main>
   return (
     <main>
-      <header>
-        <h1>{plant.name}</h1>
-        <p>{plant.img}</p>
-      </header>
-      <p>Plant Details:</p>
+      <h1>{plant.name}</h1>
+      <img src={plant.img} alt={plant.name} />
+      <p>How Much Sun: {plant.howMuchSun}</p>
+      <p>Type of Light: {plant.typeOfLight}</p>
+      <p>Best Season to Plant: {plant.bestSeasonToPlant}</p>
+      <p>Indoor/Outdoor: {plant.indoorOutdoor}</p>
+      <p>Grow Time: {plant.growTime}</p>
+
       <Link to={`/plants/${plantId}/edit`}>Edit Plant</Link>
       <button onClick={() => props.handleDeletePlant(plantId)}>Delete</button>
     </main>
