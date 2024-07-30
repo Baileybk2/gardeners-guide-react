@@ -9,11 +9,13 @@ const PlantForm = (props) => {
     whenToWater: [],
     whenToFertilize: [],
     howMuchSun: "",
-    typeOfLight: "",
-    bestSeasonToPlant: "",
+    typeOfLight: "Direct Sunlight",
+    bestSeasonToPlant: "Spring",
     indoorOutdoor: "Indoor",
     growTime: "",
   })
+
+  console.log("formData", formData)
 
   const { plantId } = useParams()
 
@@ -59,12 +61,12 @@ const PlantForm = (props) => {
           value={formData.img}
           onChange={handleChange}
         />
-        <label htmlFor="howMuchSun">How Much Sun:</label>
+        <label htmlFor="howMuchSun">Light (hrs/day):</label>
         <input
           type="text"
           id="howMuchSun"
           name="howMuchSun"
-          value={formData.howMuchSun}
+          value={formData.howMuchSun || ""}
           onChange={handleChange}
         />
         <label htmlFor="typeOfLight">Type of Light:</label>
@@ -78,6 +80,9 @@ const PlantForm = (props) => {
           <option value="Indirect Light">Indirect Light</option>
           <option value="Medium Light">Medium Light</option>
           <option value="Low Light">Low Light</option>
+          <option value="Full Sun">Full Sun</option>
+          <option value="Partial Sun">Partial Sun</option>
+          <option value="Full Shade">Full Shade</option>
         </select>
 
         <label htmlFor="bestSeasonToPlant">Best Season to Plant:</label>
@@ -108,7 +113,7 @@ const PlantForm = (props) => {
           type="text"
           id="growTime"
           name="growTime"
-          value={formData.growTime}
+          value={formData.growTime || ""}
           onChange={handleChange}
         />
 
