@@ -20,31 +20,30 @@ const App = () => {
 
   const navigate = useNavigate()
 
+  const fetchAllPlants = async () => {
+    const plantsData = await plantService.index()
+    setPlants(plantsData)
+  }
+
   useEffect(() => {
-    const fetchAllPlants = async () => {
-      const plantsData = await plantService.index()
-      setPlants(plantsData)
-    }
     if (user) fetchAllPlants()
   }, [user])
 
   const handleAddPlant = async (plantFormData) => {
-    const newPlant = await plantService.create(plantFormData)
-    setPlants([newPlant, ...plants])
+    await plantService.create(plantFormData)
+    fetchAllPlants()
     navigate("/plants")
   }
 
   const handleDeletePlant = async (plantId) => {
-    const deletedPlant = await plantService.deletePlant(plantId)
-    setPlants(plants.filter((plant) => plant._id !== deletedPlant._Id))
+    await plantService.deletePlant(plantId)
+    fetchAllPlants()
     navigate("/plants")
   }
 
   const handleUpdatePlant = async (plantId, plantFormData) => {
-    const updatedPlant = await plantService.update(plantId, plantFormData)
-    setPlants(
-      plants.map((plant) => (plantId === plant._id ? updatedPlant : plant))
-    )
+    await plantService.update(plantId, plantFormData)
+    fetchAllPlants()
     navigate(`plants/${plantId}`)
   }
 

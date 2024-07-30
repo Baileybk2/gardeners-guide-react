@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom"
 
 const PlantList = (props) => {
+  console.log(props.plants)
   return (
     <main>
       <h1>Your Plants</h1>
-      {props.plants.map((plant) => (
-        <Link key={plant._id} to={`/plants/${plant._id}`}>
+      {props.plants.map((plant, index) => (
+        <Link key={index} to={`/plants/${plant._id}`}>
           <h2>
             {plant.name} <img src={plant.img} alt={plant.name} />
           </h2>
