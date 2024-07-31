@@ -8,11 +8,9 @@ import WaterForm from "../WhenToWater/WhenToWater"
 import FertForm from "../WhenToFertilize/WhenToFertilize"
 
 const PlantDetails = (props) => {
-  const { plantId } = useParams()
-
   const [plant, setPlant] = useState(null)
-
   const user = useContext(AuthedUserContext)
+  const { plantId } = useParams()
 
   useEffect(() => {
     const fetchPlant = async () => {
@@ -49,10 +47,12 @@ const PlantDetails = (props) => {
       <p>Date of Day to Fertilize:</p>
         {plant.whenToFertilize.map((fertilize) => (
           <article key={fertilize._id}>
-              {fertilize.dateOfDay}
+              {/* see attributions section  */}
+              {fertilize.dateOfDay.match(/.{10}/)} 
           </article>
         ))}
       </section>
+
       <section>
       <p>When to Water:</p>
         {plant.whenToWater.map((water) => (
@@ -66,8 +66,8 @@ const PlantDetails = (props) => {
       </section>
       <p>Condition of Soil: {plant.conditionOfSoil}</p>
 
-      <WaterForm handleAddWater={handleAddWater} />
       <FertForm handleAddFertilizer={handleAddFertilizer} />
+      <WaterForm handleAddWater={handleAddWater} />
 
       <Link to={`/plants/${plantId}/edit`}>Edit Plant</Link>
       <Link to={`/plants/${plantId}/water`}>Edit Water Schedule</Link>
