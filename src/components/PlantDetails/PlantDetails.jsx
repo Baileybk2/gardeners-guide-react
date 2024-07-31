@@ -62,13 +62,13 @@ const PlantDetails = (props) => {
   const handleDeleteFertilizer = async (fertilizerId) => {
     const deletedFertilizer = await plantService.deleteFertilizer(plantId, fertilizerId)
     setPlant({...plant, whenToFertilize: plant.whenToFertilize.filter((fertilize) => fertilize._id !== deletedFertilizer._id)})
-    navigate('/plants')
+    fetchPlant()
   }
 
   const handleDeleteWater = async (waterId) => {
     const deletedWater = await plantService.deleteWater(plantId, waterId)
     setPlant({...plant, whenToWater: plant.whenToWater.filter((water) => water._id !== deletedWater._id)})
-    navigate('/plants')
+    fetchPlant()
   }
 
   console.log("plant state:", plant)
