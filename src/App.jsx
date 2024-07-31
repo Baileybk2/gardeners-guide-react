@@ -13,6 +13,7 @@ import PlantDetails from "./components/PlantDetails/PlantDetails"
 import PlantForm from "./components/PlantForm/PlantForm"
 import WaterForm from "./components/WhenToWater/WhenToWater"
 import FertForm from "./components/WhenToFertilize/WhenToFertilize"
+import "./app.sass"
 
 export const AuthedUserContext = createContext(null)
 
