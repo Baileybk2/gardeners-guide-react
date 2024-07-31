@@ -2,11 +2,11 @@ import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import * as plantService from "../../services/plantService"
 
-import './whenToFertilize.sass'
+import "./whenToFertilize.sass"
 
 const FertForm = (props) => {
   const [formData, setFormData] = useState({
-    dateOfDay: '',
+    dateOfDay: "",
   })
 
   const handleChange = (event) => {
@@ -16,7 +16,7 @@ const FertForm = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     props.handleAddFertilizer(formData)
-    setFormData({ dateOfDay: ''})
+    setFormData({ dateOfDay: "" })
   }
 
   return (
@@ -24,16 +24,16 @@ const FertForm = (props) => {
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>When to Fertilize!</legend>
-            <label htmlFor="dateOfDay">Date: &nbsp;</label>
-              <input
-                required
-                type="date"
-                id="dateOfDay"
-                name="dateOfDay"
-                value={formData.dateOfDay}
-                onChange={handleChange}
-              />
-            <button type="submit">Submit</button>
+          <label htmlFor="dateOfDay">Date: &nbsp;</label>
+          <input
+            required
+            type="date"
+            id="dateOfDay"
+            name="dateOfDay"
+            value={formData.dateOfDay}
+            onChange={handleChange}
+          />
+          <button type="submit">Submit</button>
         </fieldset>
       </form>
     </main>

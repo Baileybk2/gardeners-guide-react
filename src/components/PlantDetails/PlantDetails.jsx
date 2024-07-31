@@ -13,6 +13,8 @@ const PlantDetails = (props) => {
   const [plant, setPlant] = useState(null)
   const [isWaterFormVisible, setIsWaterFormVisible] = useState(false)
   const [isFertFormVisible, setIsFertFormVisible] = useState(false)
+  const [isWaterFormSubmitted, setIsWaterFormSubmitted] = useState(false)
+  const [isFertFormSubmitted, setIsFertFormSubmitted] = useState(false)
 
   const user = useContext(AuthedUserContext)
   const { plantId } = useParams()
@@ -44,12 +46,19 @@ const PlantDetails = (props) => {
     const plantWater = await plantService.createWater(plantId, plantFormData)
     setPlant({ ...plant, whenToWater: [...plant.whenToWater, plantWater] })
     fetchPlant()
+    toggleWaterVisibility()
+    setIsWaterFormSubmitted(true)
   }
 
   const handleAddFertilizer = async (plantFormData) => {
-    const plantFertilizer = await plantService.createFertilzer(plantId, plantFormData)
+    const plantFertilizer = await plantService.createFertilzer(
+      plantId,
+      plantFormData
+    )
     setPlant(plant)
     fetchPlant()
+    toggleFertVisibility()
+    setIsFertFormSubmitted(true)
   }
 
   console.log("plant state:", plant)
@@ -87,19 +96,21 @@ const PlantDetails = (props) => {
         ))}
       </section>
 
-      <button onClick={toggleFertVisibility}>Add Fertilzer Schedule</button>
-      { isFertFormVisible ? (
-        <FertForm handleAddFertilizer={handleAddFertilizer} />
+      {isFertFormSubmitted ? (
+        <button onClick={toggleFertVisibility}>Edit Fertilizer Schedule</button>
       ) : (
-        <p></p>
+        <button onClick={toggleFertVisibility}>Add Fertilizer Schedule</button>
+      )}
+      {isFertFormVisible && (
+        <FertForm handleAddFertilizer={handleAddFertilizer} />
       )}
 
-      <button onClick={toggleWaterVisibility}>Add Water Schedule</button>
-      { isWaterFormVisible ? (
-        <WaterForm handleAddWater={handleAddWater} />
+      {isWaterFormSubmitted ? (
+        <button onClick={toggleWaterVisibility}>Edit Water Schedule</button>
       ) : (
-        <p></p>
+        <button onClick={toggleWaterVisibility}>Add Water Schedule</button>
       )}
+      {isWaterFormVisible && <WaterForm handleAddWater={handleAddWater} />}
 
       <Link to={`/plants/${plantId}/edit`}>Edit Plant</Link>
       <button onClick={() => props.handleDeletePlant(plantId)}>Delete</button>
