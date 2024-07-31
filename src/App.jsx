@@ -11,6 +11,8 @@ import PlantList from "./components/PlantList/PlantList"
 import * as plantService from "./services/plantService"
 import PlantDetails from "./components/PlantDetails/PlantDetails"
 import PlantForm from "./components/PlantForm/PlantForm"
+import WaterForm from "./components/WhenToWater/WhenToWater"
+import FertForm from "./components/WhenToFertilize/WhenToFertilize"
 
 export const AuthedUserContext = createContext(null)
 
@@ -30,10 +32,21 @@ const App = () => {
   }, [user])
   // add else statement to redirect to sigin page?
 
-  const handleAddPlant = async (plantFormData) => {
+  const handleAddPlant = async (plantFormData, plantId) => {
     await plantService.create(plantFormData)
     fetchAllPlants()
-    navigate("/plants")
+    console.log('Kyle"s test', plantFormData)
+    navigate(`/plants/${plantId}/water`)
+  }
+
+  const handleAddWater = async (plantFormData, plantId) => {
+    await plantService.createWater(plantFormData)
+    navigate(`/plants/${plantId}/fertilze`)
+  }
+
+  const handleAddFertilizer = async (plantFormData) => {
+    await plantService.createFertilzer(plantFormData)
+    navigate(`/plants/`)
   }
 
   const handleDeletePlant = async (plantId) => {
@@ -74,6 +87,8 @@ const App = () => {
                 path="/plants/:plantId/edit"
                 element={<PlantForm handleUpdatePlant={handleUpdatePlant} />}
               />
+              <Route path="plants/:plantId/water" element={<WaterForm handleAddWater={handleAddWater} /> } />
+              <Route path="plants/:plantId/fertilize" element={<FertForm handleAddFertilizer={handleAddFertilizer}/> } />
             </>
           ) : (
             <Route path="/" element={<Landing />} />

@@ -35,8 +35,9 @@ const PlantDetails = (props) => {
       <p>Date of Day to Fertilize: {plant.whenToFertilize.dateOfDay}</p>
       <p>When to Water: {plant.whenToWater.dateOfDay}</p>
       <p>Condition of Soil: {plant.conditionOfSoil}</p>
-
       <Link to={`/plants/${plantId}/edit`}>Edit Plant</Link>
+      <Link to={`/plants/${plantId}/water`}>Add Water Schedule</Link>
+      <Link to={`/plants/${plantId}/fertilize`}>Add Fertilize Schedule</Link>
       <button onClick={() => props.handleDeletePlant(plantId)}>Delete</button>
     </main>
   )

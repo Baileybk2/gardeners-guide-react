@@ -68,4 +68,36 @@ const update = async (plantId, plantFormData) => {
   }
 }
 
-export { index, show, create, deletePlant, update }
+const createWater = async (plantId, plantFormData) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${plantId}/water`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(plantFormData),
+    })
+    return res.json()
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+const createFertilzer = async (plantId, plantFormData) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${plantId}/fertilze`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(plantFormData),
+    })
+    return res.json()
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export { index, show, create, deletePlant, update, createWater, createFertilzer }
