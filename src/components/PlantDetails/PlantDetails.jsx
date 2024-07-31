@@ -15,7 +15,6 @@ const PlantDetails = (props) => {
   useEffect(() => {
     const fetchPlant = async () => {
       const plantData = await plantService.show(plantId)
-      console.log("plantData:", plantData)
       setPlant(plantData)
     }
     fetchPlant()
@@ -43,8 +42,9 @@ const PlantDetails = (props) => {
       <p>Best Season to Plant: {plant.bestSeasonToPlant}</p>
       <p>Indoor/Outdoor: {plant.indoorOutdoor}</p>
       <p>Grow Time: {plant.growTime}</p>
+
       <section>
-      <p>Date of Day to Fertilize:</p>
+      <h4>When to Fertilize:</h4>
         {plant.whenToFertilize.map((fertilize) => (
           <article key={fertilize._id}>
               {/* see attributions section  */}
@@ -54,7 +54,7 @@ const PlantDetails = (props) => {
       </section>
 
       <section>
-      <p>When to Water:</p>
+      <h4>When to Water:</h4>
         {plant.whenToWater.map((water) => (
           <article key={water._id}>
                   <header>
@@ -64,7 +64,6 @@ const PlantDetails = (props) => {
           </article>
         ))}
       </section>
-      <p>Condition of Soil: {plant.conditionOfSoil}</p>
 
       <FertForm handleAddFertilizer={handleAddFertilizer} />
       <WaterForm handleAddWater={handleAddWater} />
