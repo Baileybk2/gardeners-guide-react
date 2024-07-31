@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import * as plantService from "../../services/plantService"
-
+import './plantForm.sass'
 const PlantForm = (props) => {
   const [formData, setFormData] = useState({
     name: "",

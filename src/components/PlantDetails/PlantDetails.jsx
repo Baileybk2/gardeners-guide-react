@@ -4,6 +4,8 @@ import { useState, useEffect, useContext } from "react"
 import * as plantService from "../../services/plantService"
 import { Link } from "react-router-dom"
 
+import './plantDetails.sass'
+
 import WaterForm from "../WhenToWater/WhenToWater"
 import FertForm from "../WhenToFertilize/WhenToFertilize"
 

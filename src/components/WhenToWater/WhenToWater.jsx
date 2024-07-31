@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import * as plantService from "../../services/plantService"
 
+import './whenToWater.sass'
+
 const WaterForm = (props) => {
   const [formData, setFormData] = useState({
     dateOfDay: "",

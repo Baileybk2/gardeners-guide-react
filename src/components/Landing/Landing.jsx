@@ -1,3 +1,5 @@
+import './landing.sass'
+
 const Landing = () => {
   return (
     <main>

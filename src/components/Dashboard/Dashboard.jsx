@@ -1,5 +1,6 @@
 import { AuthedUserContext } from "../../App"
 import { useContext } from "react"
+import './dashboard.sass'
 
 const Dashboard = ({}) => {
   const user = useContext(AuthedUserContext)
