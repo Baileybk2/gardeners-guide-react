@@ -4,7 +4,7 @@ import { useState, useEffect, useContext } from "react"
 import * as plantService from "../../services/plantService"
 import { Link } from "react-router-dom"
 
-import './plantDetails.sass'
+import "./plantDetails.sass"
 
 import WaterForm from "../WhenToWater/WhenToWater"
 import FertForm from "../WhenToFertilize/WhenToFertilize"
@@ -14,22 +14,28 @@ const PlantDetails = (props) => {
   const user = useContext(AuthedUserContext)
   const { plantId } = useParams()
 
+  const fetchPlant = async () => {
+    const plantData = await plantService.show(plantId)
+    setPlant(plantData)
+  }
+
   useEffect(() => {
-    const fetchPlant = async () => {
-      const plantData = await plantService.show(plantId)
-      setPlant(plantData)
-    }
     fetchPlant()
   }, [plantId])
 
   const handleAddWater = async (plantFormData) => {
     const plantWater = await plantService.createWater(plantId, plantFormData)
-    setPlant({...plant, whenToWater: [...plant.whenToWater, plantWater]})
+    setPlant({ ...plant, whenToWater: [...plant.whenToWater, plantWater] })
+    fetchPlant()
   }
 
   const handleAddFertilizer = async (plantFormData) => {
-    const plantFertilizer = await plantService.createFertilzer(plantId, plantFormData)
-    setPlant({...plant, whenToFertilize: [...plant.whenToFertilize, plantFertilizer]})
+    const plantFertilizer = await plantService.createFertilzer(
+      plantId,
+      plantFormData
+    )
+    setPlant(plant)
+    fetchPlant()
   }
 
   console.log("plant state:", plant)
@@ -46,23 +52,23 @@ const PlantDetails = (props) => {
       <p>Grow Time: {plant.growTime}</p>
 
       <section>
-      <h4>When to Fertilize:</h4>
+        <h4>When to Fertilize:</h4>
         {plant.whenToFertilize.map((fertilize) => (
           <article key={fertilize._id}>
-              {/* see attributions section  */}
-              {fertilize.dateOfDay.match(/.{10}/)} 
+            {/* see attributions section  */}
+            {fertilize.dateOfDay.match(/.{10}/)}
           </article>
         ))}
       </section>
 
       <section>
-      <h4>When to Water:</h4>
+        <h4>When to Water:</h4>
         {plant.whenToWater.map((water) => (
           <article key={water._id}>
-                  <header>
-                    <p>Water every {water.dateOfDay} days</p>
-                  </header>
-                  <p>Notes: {water.conditionOfSoil}</p>
+            <header>
+              <p>Water every {water.dateOfDay} days</p>
+            </header>
+            <p>Notes: {water.conditionOfSoil}</p>
           </article>
         ))}
       </section>
