@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import './plantList.sass'
 
 const PlantList = (props) => {
   return (

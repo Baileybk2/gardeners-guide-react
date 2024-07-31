@@ -1,8 +1,6 @@
-import './landing.sass'
-
 const Landing = () => {
   return (
-    <main>
+    <main className="container">
       <h1>Gardener's Guide.</h1>
       <h3>Get started by signing in or signing up.</h3>
     </main>

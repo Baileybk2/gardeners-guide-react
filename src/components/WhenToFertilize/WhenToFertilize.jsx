@@ -2,8 +2,6 @@ import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import * as plantService from "../../services/plantService"
 
-import "./whenToFertilize.sass"
-
 const FertForm = (props) => {
   const [formData, setFormData] = useState({
     dateOfDay: "",
