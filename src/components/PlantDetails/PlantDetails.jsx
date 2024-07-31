@@ -101,8 +101,7 @@ const PlantDetails = (props) => {
         <p></p>
       )}
 
-      <button to={`/plants/${plantId}/edit`}>Edit Plant</button>
-      <button to={`/plants/${plantId}/fertilize`}>Edit Fertilize Schedule</button>
+      <Link to={`/plants/${plantId}/edit`}>Edit Plant</Link>
       <button onClick={() => props.handleDeletePlant(plantId)}>Delete</button>
     </main>
   )
