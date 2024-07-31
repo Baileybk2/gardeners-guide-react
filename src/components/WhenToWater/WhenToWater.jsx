@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import * as plantService from "../../services/plantService"
 
 import './whenToWater.sass'
@@ -9,14 +9,32 @@ const WaterForm = (props) => {
     dateOfDay: "",
     conditionOfSoil: ""
   })
+  const navigate = useNavigate()
 
+  const { plantId, whenToWaterId } = useParams()
+
+  useEffect(() => {
+    const fetchPlant = async () => {
+      const plantData = await plantService.show(plantId)
+      setFormData(plantData.whenToWater.find((water) => water._id === whenToWaterId))
+    }
+    if (plantId && whenToWaterId) fetchPlant()
+  }, [plantId, whenToWaterId])
+
+  console.log(whenToWaterId)
+  
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    props.handleAddWater(formData)
+    if (plantId && whenToWaterId) {
+      plantService.updateWater(plantId, whenToWaterId, formData)
+      navigate(`/plants/${plantId}`)
+    } else {
+      props.handleAddWater(formData)
+    }
     setFormData({ 
         dateOfDay: "", 
         conditionOfSoil: ""

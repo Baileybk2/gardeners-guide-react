@@ -13,8 +13,6 @@ const PlantDetails = (props) => {
   const [plant, setPlant] = useState(null)
   const [isWaterFormVisible, setIsWaterFormVisible] = useState(false)
   const [isFertFormVisible, setIsFertFormVisible] = useState(false)
-  const [isWaterFormSubmitted, setIsWaterFormSubmitted] = useState(false)
-  const [isFertFormSubmitted, setIsFertFormSubmitted] = useState(false)
 
   const user = useContext(AuthedUserContext)
   const { plantId } = useParams()
@@ -47,18 +45,16 @@ const PlantDetails = (props) => {
     setPlant({ ...plant, whenToWater: [...plant.whenToWater, plantWater] })
     fetchPlant()
     toggleWaterVisibility()
-    setIsWaterFormSubmitted(true)
   }
 
   const handleAddFertilizer = async (plantFormData) => {
-    const plantFertilizer = await plantService.createFertilzer(
+    const plantFertilizer = await plantService.createFertilizer(
       plantId,
       plantFormData
     )
     setPlant(plant)
     fetchPlant()
     toggleFertVisibility()
-    setIsFertFormSubmitted(true)
   }
 
   console.log("plant state:", plant)
@@ -78,10 +74,23 @@ const PlantDetails = (props) => {
         <h4>When to Fertilize:</h4>
         {plant.whenToFertilize.map((fertilize) => (
           <article key={fertilize._id}>
+            <p>
             {/* see attributions section  */}
             {fertilize.dateOfDay.match(/.{10}/)}
+            </p>
+            <div>
+              <Link to={`/plants/${plantId}/fertilize/${fertilize._id}/edit`} >
+                <button>Edit Fertilizer Schedule</button>
+              </Link>
+            </div>
           </article>
         ))}
+          {!plant.whenToFertilize.length && (
+            <div>
+              <button onClick={toggleFertVisibility}>Add Fertilizer Schedule</button>
+              {isFertFormVisible && <FertForm handleAddFertilizer={handleAddFertilizer} /> }
+            </div>
+          )}
       </section>
 
       <section>
@@ -92,25 +101,21 @@ const PlantDetails = (props) => {
               <p>Water every {water.dateOfDay} days</p>
             </header>
             <p>Notes: {water.conditionOfSoil}</p>
+            <div>
+            <Link to={`/plants/${plantId}/water/${water._id}/edit`} >
+              <button>Edit Water Schedule</button>
+            </Link>
+            </div>
           </article>
         ))}
+          {!plant.whenToWater.length && (
+            <div>
+              <button onClick={toggleWaterVisibility}>Add Water Schedule</button>
+              {isWaterFormVisible && <WaterForm handleAddWater={handleAddWater} />}
+            </div>
+          )}
+
       </section>
-
-      {isFertFormSubmitted ? (
-        <button onClick={toggleFertVisibility}>Edit Fertilizer Schedule</button>
-      ) : (
-        <button onClick={toggleFertVisibility}>Add Fertilizer Schedule</button>
-      )}
-      {isFertFormVisible && (
-        <FertForm handleAddFertilizer={handleAddFertilizer} />
-      )}
-
-      {isWaterFormSubmitted ? (
-        <button onClick={toggleWaterVisibility}>Edit Water Schedule</button>
-      ) : (
-        <button onClick={toggleWaterVisibility}>Add Water Schedule</button>
-      )}
-      {isWaterFormVisible && <WaterForm handleAddWater={handleAddWater} />}
 
       <Link to={`/plants/${plantId}/edit`}>Edit Plant</Link>
       <button onClick={() => props.handleDeletePlant(plantId)}>Delete</button>
