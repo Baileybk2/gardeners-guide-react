@@ -11,6 +11,9 @@ import PlantList from "./components/PlantList/PlantList"
 import * as plantService from "./services/plantService"
 import PlantDetails from "./components/PlantDetails/PlantDetails"
 import PlantForm from "./components/PlantForm/PlantForm"
+import WaterForm from "./components/WhenToWater/WhenToWater"
+import FertForm from "./components/WhenToFertilize/WhenToFertilize"
+
 
 export const AuthedUserContext = createContext(null)
 
@@ -33,7 +36,7 @@ const App = () => {
   const handleAddPlant = async (plantFormData) => {
     await plantService.create(plantFormData)
     fetchAllPlants()
-    navigate("/plants")
+    navigate(`/plants/`)
   }
 
   const handleDeletePlant = async (plantId) => {

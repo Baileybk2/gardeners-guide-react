@@ -6,12 +6,8 @@ const PlantForm = (props) => {
   const [formData, setFormData] = useState({
     name: "",
     img: "https://cdn-icons-png.flaticon.com/512/739/739249.png",
-    whenToWater: [
-      {  dateOfDay: "" }
-    ],
-    whenToFertilize: [
-      { dateOfDay: "", conditionOfSoil: "" }
-    ],
+    whenToWater: [],
+    whenToFertilize: [],
     howMuchSun: "",
     typeOfLight: "Direct Sunlight",
     bestSeasonToPlant: "Spring",
@@ -47,114 +43,88 @@ const PlantForm = (props) => {
   return (
     <main>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input
-          required
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-        />
-        <label htmlFor="img">Image URL:</label>
-        <input
-          required
-          type="text"
-          id="img"
-          name="img"
-          value={formData.img}
-          onChange={handleChange}
-        />
-        <label htmlFor="howMuchSun">Light (hrs/day):</label>
-        <input
-          type="text"
-          id="howMuchSun"
-          name="howMuchSun"
-          value={formData.howMuchSun || ""}
-          onChange={handleChange}
-        />
-        <label htmlFor="typeOfLight">Type of Light:</label>
-        <select
-          id="typeOfLight"
-          name="typeOfLight"
-          value={formData.typeOfLight}
-          onChange={handleChange}
-        >
-          <option value="Direct Sunlight">Direct Sunlight</option>
-          <option value="Indirect Light">Indirect Light</option>
-          <option value="Medium Light">Medium Light</option>
-          <option value="Low Light">Low Light</option>
-          <option value="Full Sun">Full Sun</option>
-          <option value="Partial Sun">Partial Sun</option>
-          <option value="Full Shade">Full Shade</option>
-        </select>
-
-        <label htmlFor="bestSeasonToPlant">Best Season to Plant:</label>
-        <select
-          id="bestSeasonToPlant"
-          name="bestSeasonToPlant"
-          value={formData.bestSeasonToPlant}
-          onChange={handleChange}
-        >
-          <option value="Spring">Spring</option>
-          <option value="Summer">Summer</option>
-          <option value="Fall">Fall</option>
-          <option value="Winter">Winter</option>
-        </select>
-
-        <label htmlFor="indoorOutdoor">Indoor/Outdoor:</label>
-        <select
-          id="indoorOutdoor"
-          name="indoorOutdoor"
-          value={formData.indoorOutdoor}
-          onChange={handleChange}
-        >
-          <option value="Indoor">Indoor</option>
-          <option value="Outdoor">Outdoor</option>
-        </select>
-        <label htmlFor="growTime">Grow Time:</label>
-        <input
-          type="text"
-          id="growTime"
-          name="growTime"
-          value={formData.growTime || ""}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="whenToFertilize">When to Fertilize:</label>
-        <input
-          required
-          type="date"
-          id="whenToFertilize"
-          name="whenToWater"
-          value={formData.whenToFertilize.dateOfDay}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="whenToWater">Date of Day:</label>
-        <input
-          required
-          type="number"
-          id="whenToWater"
-          name="whenToWater"
-          min = "1"
-          max = "31"
-        
-          value={formData.whenToWater.dateOfDay}
-          onChange={handleChange}
-        />
-        
-        <label htmlFor="conditionOfSoil">Condition of Soil:</label>
-        <textarea 
-          required
-          type="text"
-          id="conditionOfSoil"
-          name="conditionOfSoil"
-          value={formData.whenToWater.conditionOfSoil}
-          onChange={handleChange}
-        ></textarea>
-
-        <button type="submit">Submit Plant</button>
+        <fieldset>
+          <legend>Create a plant!</legend>
+            <label htmlFor="name">Name:</label>
+            <input
+              required
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+            />
+          <br /><br />
+            <label htmlFor="img">Image URL:</label>
+            <input
+              required
+              type="text"
+              id="img"
+              name="img"
+              value={formData.img}
+              onChange={handleChange}
+            />
+          <br /><br />
+            <label htmlFor="howMuchSun">Light (hrs/day):</label>
+            <input
+              type="number"
+              id="howMuchSun"
+              name="howMuchSun"
+              value={formData.howMuchSun || ""}
+              onChange={handleChange}
+            />
+          <br /><br />
+            <label htmlFor="typeOfLight">Type of Light:</label>
+            <select
+              id="typeOfLight"
+              name="typeOfLight"
+              value={formData.typeOfLight}
+              onChange={handleChange}
+            >
+              <option value="Direct Sunlight">Direct Sunlight</option>
+              <option value="Indirect Light">Indirect Light</option>
+              <option value="Medium Light">Medium Light</option>
+              <option value="Low Light">Low Light</option>
+              <option value="Full Sun">Full Sun</option>
+              <option value="Partial Sun">Partial Sun</option>
+              <option value="Full Shade">Full Shade</option>
+            </select>
+          <br /><br />
+            <label htmlFor="bestSeasonToPlant">Best Season to Plant:</label>
+              <select
+                id="bestSeasonToPlant"
+                name="bestSeasonToPlant"
+                value={formData.bestSeasonToPlant}
+                onChange={handleChange}
+              >
+                <option value="Spring">Spring</option>
+                <option value="Summer">Summer</option>
+                <option value="Fall">Fall</option>
+                <option value="Winter">Winter</option>
+              </select>
+          <br /><br />
+            <label htmlFor="indoorOutdoor">Indoor/Outdoor:</label>
+              <select
+                id="indoorOutdoor"
+                name="indoorOutdoor"
+                value={formData.indoorOutdoor}
+                onChange={handleChange}
+              >
+                <option value="Indoor">Indoor</option>
+                <option value="Outdoor">Outdoor</option>
+              </select>
+          <br /><br />
+            <label htmlFor="growTime">Grow Time:</label>
+              <input
+                type="text"
+                id="growTime"
+                name="growTime"
+                value={formData.growTime || ""}
+                onChange={handleChange}
+              />
+          <br /><br />
+        </fieldset>
+        <button type="submit">Submit</button>
       </form>
     </main>
   )
