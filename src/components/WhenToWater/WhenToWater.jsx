@@ -8,29 +8,17 @@ const WaterForm = (props) => {
     conditionOfSoil: ""
   })
 
-  console.log("formData", formData)
-
-  const { plantId } = useParams()
-
-  useEffect(() => {
-    const fetchPlant = async () => {
-      const plantData = await plantService.show(plantId)
-      setFormData(plantData)
-    }
-    if (plantId) fetchPlant()
-  }, [plantId])
-
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    // if (plantId) {
-    //   props.handleUpdatePlant(plantId, formData)
-    // } else {
-      props.handleAddWater(formData)
-    // }
+    props.handleAddWater(formData)
+    setFormData({ 
+        dateOfDay: "", 
+        conditionOfSoil: ""
+    })
   }
 
   return (
@@ -61,8 +49,8 @@ const WaterForm = (props) => {
                 value={formData.conditionOfSoil}
                 onChange={handleChange}
               ></textarea>
+            <button type="submit">Submit</button>
         </fieldset>
-        <button type="submit">Submit</button>
       </form>
     </main>
   )

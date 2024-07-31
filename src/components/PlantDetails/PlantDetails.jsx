@@ -4,6 +4,9 @@ import { useState, useEffect, useContext } from "react"
 import * as plantService from "../../services/plantService"
 import { Link } from "react-router-dom"
 
+import WaterForm from "../WhenToWater/WhenToWater"
+import FertForm from "../WhenToFertilize/WhenToFertilize"
+
 const PlantDetails = (props) => {
   const { plantId } = useParams()
 
@@ -20,6 +23,16 @@ const PlantDetails = (props) => {
     fetchPlant()
   }, [plantId])
 
+  const handleAddWater = async (plantFormData) => {
+    const plantWater = await plantService.createWater(plantId, plantFormData)
+    setPlant({...plant, whenToWater: [...plant.whenToWater, plantWater]})
+  }
+
+  const handleAddFertilizer = async (plantFormData) => {
+    const plantFertilizer = await plantService.createFertilzer(plantId, plantFormData)
+    setPlant({...plant, whenToFertilize: [...plant.whenToFertilize, plantFertilizer]})
+  }
+
   console.log("plant state:", plant)
 
   if (!plant) return <main>Loading...</main>
@@ -32,12 +45,33 @@ const PlantDetails = (props) => {
       <p>Best Season to Plant: {plant.bestSeasonToPlant}</p>
       <p>Indoor/Outdoor: {plant.indoorOutdoor}</p>
       <p>Grow Time: {plant.growTime}</p>
-      <p>Date of Day to Fertilize: {plant.whenToFertilize.dateOfDay}</p>
-      <p>When to Water: {plant.whenToWater.dateOfDay}</p>
+      <section>
+      <p>Date of Day to Fertilize:</p>
+        {plant.whenToFertilize.map((fertilize) => (
+          <article key={fertilize._id}>
+              {fertilize.dateOfDay}
+          </article>
+        ))}
+      </section>
+      <section>
+      <p>When to Water:</p>
+        {plant.whenToWater.map((water) => (
+          <article key={water._id}>
+                  <header>
+                    <p>Water every {water.dateOfDay} days</p>
+                  </header>
+                  <p>Notes: {water.conditionOfSoil}</p>
+          </article>
+        ))}
+      </section>
       <p>Condition of Soil: {plant.conditionOfSoil}</p>
+
+      <WaterForm handleAddWater={handleAddWater} />
+      <FertForm handleAddFertilizer={handleAddFertilizer} />
+
       <Link to={`/plants/${plantId}/edit`}>Edit Plant</Link>
-      <Link to={`/plants/${plantId}/water`}>Add Water Schedule</Link>
-      <Link to={`/plants/${plantId}/fertilize`}>Add Fertilize Schedule</Link>
+      <Link to={`/plants/${plantId}/water`}>Edit Water Schedule</Link>
+      <Link to={`/plants/${plantId}/fertilize`}>Edit Fertilize Schedule</Link>
       <button onClick={() => props.handleDeletePlant(plantId)}>Delete</button>
     </main>
   )

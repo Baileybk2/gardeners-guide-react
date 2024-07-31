@@ -86,7 +86,7 @@ const createWater = async (plantId, plantFormData) => {
 
 const createFertilzer = async (plantId, plantFormData) => {
   try {
-    const res = await fetch(`${BASE_URL}/${plantId}/fertilze`, {
+    const res = await fetch(`${BASE_URL}/${plantId}/fertilize`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,

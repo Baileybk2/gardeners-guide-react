@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 
 const PlantList = (props) => {
-  console.log(props.plants)
   return (
     <main>
       <h1>Your Plants</h1>

@@ -4,20 +4,8 @@ import * as plantService from "../../services/plantService"
 
 const FertForm = (props) => {
   const [formData, setFormData] = useState({
-    dateOfDay: null,
+    dateOfDay: '',
   })
-
-  console.log("formData", formData)
-
-  const { plantId } = useParams()
-
-  useEffect(() => {
-    const fetchPlant = async () => {
-      const plantData = await plantService.show(plantId)
-      setFormData(plantData)
-    }
-    if (plantId) fetchPlant()
-  }, [plantId])
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
@@ -25,11 +13,8 @@ const FertForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    // if (plantId) {
-    //   props.handleUpdatePlant(plantId, formData)
-    // } else {
-      props.handleAddFertilizer(formData)
-    // }
+    props.handleAddFertilizer(formData)
+    setFormData({ dateOfDay: ''})
   }
 
   return (
@@ -46,8 +31,8 @@ const FertForm = (props) => {
                 value={formData.dateOfDay}
                 onChange={handleChange}
               />
+            <button type="submit">Submit</button>
         </fieldset>
-        <button type="submit">Submit</button>
       </form>
     </main>
   )
