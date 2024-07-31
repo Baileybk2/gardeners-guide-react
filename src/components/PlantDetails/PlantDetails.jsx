@@ -11,12 +11,29 @@ import FertForm from "../WhenToFertilize/WhenToFertilize"
 
 const PlantDetails = (props) => {
   const [plant, setPlant] = useState(null)
+  const [isWaterFormVisible, setIsWaterFormVisible] = useState(false)
+  const [isFertFormVisible, setIsFertFormVisible] = useState(false)
+
   const user = useContext(AuthedUserContext)
   const { plantId } = useParams()
 
   const fetchPlant = async () => {
     const plantData = await plantService.show(plantId)
     setPlant(plantData)
+  }
+
+  const toggleFertVisibility = () => {
+    setIsFertFormVisible(true)
+    if (isFertFormVisible) {
+      setIsFertFormVisible(false)
+    }
+  }
+
+  const toggleWaterVisibility = () => {
+    setIsWaterFormVisible(true)
+    if (isWaterFormVisible) {
+      setIsWaterFormVisible(false)
+    }
   }
 
   useEffect(() => {
@@ -30,10 +47,7 @@ const PlantDetails = (props) => {
   }
 
   const handleAddFertilizer = async (plantFormData) => {
-    const plantFertilizer = await plantService.createFertilzer(
-      plantId,
-      plantFormData
-    )
+    const plantFertilizer = await plantService.createFertilzer(plantId, plantFormData)
     setPlant(plant)
     fetchPlant()
   }
@@ -73,12 +87,21 @@ const PlantDetails = (props) => {
         ))}
       </section>
 
-      <FertForm handleAddFertilizer={handleAddFertilizer} />
-      <WaterForm handleAddWater={handleAddWater} />
+      <button onClick={toggleFertVisibility}>Add Fertilzer Schedule</button>
+      { isFertFormVisible ? (
+        <FertForm handleAddFertilizer={handleAddFertilizer} />
+      ) : (
+        <p></p>
+      )}
+
+      <button onClick={toggleWaterVisibility}>Add Water Schedule</button>
+      { isWaterFormVisible ? (
+        <WaterForm handleAddWater={handleAddWater} />
+      ) : (
+        <p></p>
+      )}
 
       <Link to={`/plants/${plantId}/edit`}>Edit Plant</Link>
-      <Link to={`/plants/${plantId}/water`}>Edit Water Schedule</Link>
-      <Link to={`/plants/${plantId}/fertilize`}>Edit Fertilize Schedule</Link>
       <button onClick={() => props.handleDeletePlant(plantId)}>Delete</button>
     </main>
   )
