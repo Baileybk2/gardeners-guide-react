@@ -100,6 +100,19 @@ const updateWater = async (plantId, whenToWaterId, plantFormData) => {
   }
 }
 
+const deleteWater = async (plantId, whenToWaterId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${plantId}/water/${whenToWaterId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 const createFertilizer = async (plantId, plantFormData) => {
   try {
@@ -133,4 +146,30 @@ const updateFertilizer = async (plantId, whenToFertilizeId, plantFormData) => {
   }
 }
 
-export { index, show, create, deletePlant, update, createWater, updateWater, createFertilizer, updateFertilizer }
+const deleteFertilizer = async (plantId, whenToFertilizeId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${plantId}/fertilize/${whenToFertilizeId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export { 
+  index, 
+  show, 
+  create, 
+  deletePlant, 
+  update, 
+  createWater, 
+  updateWater, 
+  deleteWater, 
+  createFertilizer, 
+  updateFertilizer, 
+  deleteFertilizer
+ }

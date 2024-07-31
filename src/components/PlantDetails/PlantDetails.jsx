@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { AuthedUserContext } from "../../App"
 import { useState, useEffect, useContext } from "react"
 import * as plantService from "../../services/plantService"
@@ -16,6 +16,8 @@ const PlantDetails = (props) => {
 
   const user = useContext(AuthedUserContext)
   const { plantId } = useParams()
+
+  const navigate = useNavigate()
 
   const fetchPlant = async () => {
     const plantData = await plantService.show(plantId)
@@ -57,6 +59,18 @@ const PlantDetails = (props) => {
     toggleFertVisibility()
   }
 
+  const handleDeleteFertilizer = async (fertilizerId) => {
+    const deletedFertilizer = await plantService.deleteFertilizer(plantId, fertilizerId)
+    setPlant({...plant, whenToFertilize: plant.whenToFertilize.filter((fertilize) => fertilize._id !== deletedFertilizer._id)})
+    navigate('/plants')
+  }
+
+  const handleDeleteWater = async (waterId) => {
+    const deletedWater = await plantService.deleteWater(plantId, waterId)
+    setPlant({...plant, whenToWater: plant.whenToWater.filter((water) => water._id !== deletedWater._id)})
+    navigate('/plants')
+  }
+
   console.log("plant state:", plant)
 
   if (!plant) return <main>Loading...</main>
@@ -82,6 +96,7 @@ const PlantDetails = (props) => {
               <Link to={`/plants/${plantId}/fertilize/${fertilize._id}/edit`} >
                 <button>Edit Fertilizer Schedule</button>
               </Link>
+                <button onClick={() => handleDeleteFertilizer(fertilize._id)}>Delete Fertilizer Schedule</button>
             </div>
           </article>
         ))}
@@ -105,6 +120,7 @@ const PlantDetails = (props) => {
             <Link to={`/plants/${plantId}/water/${water._id}/edit`} >
               <button>Edit Water Schedule</button>
             </Link>
+              <button onClick={() => handleDeleteWater(water._id)}>Delete Water Schedule</button>
             </div>
           </article>
         ))}
