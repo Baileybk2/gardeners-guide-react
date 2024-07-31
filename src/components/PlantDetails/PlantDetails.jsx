@@ -44,12 +44,17 @@ const PlantDetails = (props) => {
     const plantWater = await plantService.createWater(plantId, plantFormData)
     setPlant({ ...plant, whenToWater: [...plant.whenToWater, plantWater] })
     fetchPlant()
+    toggleWaterVisibility()
   }
 
   const handleAddFertilizer = async (plantFormData) => {
-    const plantFertilizer = await plantService.createFertilzer(plantId, plantFormData)
+    const plantFertilizer = await plantService.createFertilzer(
+      plantId,
+      plantFormData
+    )
     setPlant(plant)
     fetchPlant()
+    toggleFertVisibility()
   }
 
   console.log("plant state:", plant)
@@ -88,14 +93,14 @@ const PlantDetails = (props) => {
       </section>
 
       <button onClick={toggleFertVisibility}>Add Fertilzer Schedule</button>
-      { isFertFormVisible ? (
+      {isFertFormVisible ? (
         <FertForm handleAddFertilizer={handleAddFertilizer} />
       ) : (
         <p></p>
       )}
 
       <button onClick={toggleWaterVisibility}>Add Water Schedule</button>
-      { isWaterFormVisible ? (
+      {isWaterFormVisible ? (
         <WaterForm handleAddWater={handleAddWater} />
       ) : (
         <p></p>
