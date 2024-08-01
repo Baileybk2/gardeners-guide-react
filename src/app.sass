@@ -22,6 +22,9 @@ img
   width: 20%
   border: 2px solid black 
   border-radius: 25px
+h2 
+  color: #F8F9F5
+
 
 .flex-container 
   display: flex
@@ -50,12 +53,31 @@ img
   padding: 10px
   box-shadow: 5px 5px 10px #1f3719
 
+.container-plant
+  background-color: #B1B5A5
+  border-radius: 25px
+  border: solid 2px black
+  display: flex
+  flex-direction: column
+  align-items: center
+  margin: auto
+  width: fit-content
+  padding: 10px
+  box-shadow: 5px 5px 10px #1f3719
+
+.form-center 
+  display: flex
+  justify-content: center
+  flex-direction: column
+
 .navbar
   position: fixed
   top: 0
   left: 0
   width: 100%
   padding: 0
+  background-color: rgb(255 255 255 / 30%)
+  backdrop-filter: blur(10px)
   ul
     list-style: none
     margin: 0
@@ -63,9 +85,12 @@ img
     display: flex
     justify-content: space-between
     div
+      display: flex
+      flex-direction: row
       li
         margin: 0 15px
         font-weight: 600
+
       
 .buttons 
   display: flex
@@ -84,8 +109,36 @@ img
   margin-right: 5px
   margin-left: 10px
 
+.submit 
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 16px
+  margin: auto
+  margin-bottom: 16px
+  margin-top: 16px
 
-span 
+.addwater
+  display: flex
+  justify-content: center
+
+.waterform
+  margin-top: -10px
+  margin-bottom: 16px
+
+textarea
+  margin-right: 16px
+  
+.notes
+
+ margin-left: 16px
+
+
+.left
+  display: flex
+  justify-content: left
+
+span
   display: flex
   justify-content: left
 

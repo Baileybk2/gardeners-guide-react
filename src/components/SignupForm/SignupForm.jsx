@@ -62,7 +62,7 @@ const SignupForm = (props) => {
           />
         </div>
         <div >
-          <label className="Bold" htmlFor="confirm"><span>&nbsp;&nbsp;Confirm</span>Password:</label>
+          <label className="Bold" htmlFor="confirm"><span className="left">&nbsp;&nbsp;Confirm</span>Password:</label>
           <input
             type="password"
             id="confirm"

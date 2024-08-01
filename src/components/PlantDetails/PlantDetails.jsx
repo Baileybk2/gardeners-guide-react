@@ -90,11 +90,11 @@ const PlantDetails = (props) => {
       <div className="container">
         <h1>{plant.name}</h1>
         <img src={plant.img} alt={plant.name} />
-        <p>Indoor/Outdoor: {plant.indoorOutdoor}</p>
-        <p>Light (hrs/day): {plant.howMuchSun}</p>
-        <p>Type of Light: {plant.typeOfLight}</p>
-        <p>Best Season to Plant: {plant.bestSeasonToPlant}</p>
-        <p>Grow Time: {plant.growTime}</p>
+        <p><span className="Bold">Indoor/Outdoor:</span>{plant.indoorOutdoor}</p>
+        <p><span className="Bold">Light (hrs/day):</span>{plant.howMuchSun}</p>
+        <p><span className="Bold">Type of Light:</span> {plant.typeOfLight}</p>
+        <p><span className="Bold">Best Season to Plant:</span> {plant.bestSeasonToPlant}</p>
+        <p><span className="Bold">Grow Time:</span> {plant.growTime}</p>
 
         <section>
           <h4>When to Fertilize:</h4>
@@ -138,7 +138,7 @@ const PlantDetails = (props) => {
               <p>Notes: {water.conditionOfSoil}</p>
               <div>
                 <Link to={`/plants/${plantId}/water/${water._id}/edit`}>
-                  <button className="buttons">Edit Water Schedule</button>
+                  <button className="buttons1">Edit Water Schedule</button>
                 </Link>
                 <button className="buttons" onClick={() => handleDeleteWater(water._id)}>
                   Delete Water Schedule
@@ -147,14 +147,18 @@ const PlantDetails = (props) => {
             </article>
           ))}
           {!plant.whenToWater.length && (
-            <div>
+            <>
+            <div className="addwater">
               <button className="buttons" onClick={toggleWaterVisibility}>
                 Add Water Schedule
               </button>
+            </div>
+              <div className="waterform">
               {isWaterFormVisible && (
                 <WaterForm handleAddWater={handleAddWater} />
               )}
             </div>
+            </>
           )}
         </section>
         <span>
