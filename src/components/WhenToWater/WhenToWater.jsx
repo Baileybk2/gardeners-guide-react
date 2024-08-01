@@ -46,10 +46,10 @@ const WaterForm = (props) => {
   }
 
   return (
-    <main>
+    <main className="container">
       <form onSubmit={handleSubmit}>
-        <fieldset>
-          <legend>When to Water!</legend>
+       
+          <h3>When to Water!</h3>
           <label htmlFor="dateOfDay">
             Water every &nbsp;
             <input
@@ -66,8 +66,8 @@ const WaterForm = (props) => {
           </label>
           <br />
           <br />
-          <label htmlFor="conditionOfSoil">Notes: &nbsp;</label>
-          <textarea
+          <label className="notes" htmlFor="conditionOfSoil">Notes: &nbsp;</label>
+          <textarea 
             required
             type="text"
             id="conditionOfSoil"
@@ -75,8 +75,8 @@ const WaterForm = (props) => {
             value={formData.conditionOfSoil}
             onChange={handleChange}
           ></textarea>
-          <button type="submit">Submit</button>
-        </fieldset>
+          <button type="submit" className="submit">Submit</button>
+       
       </form>
     </main>
   )
