@@ -71,7 +71,7 @@ const SignupForm = (props) => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="buttons">
           <button disabled={isFormInvalid()}>Sign Up</button>
           <Link to="/">
             <button>Cancel</button>
