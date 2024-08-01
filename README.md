@@ -20,3 +20,5 @@ Currently, two official plugins are available:
 [Symbol.match](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/match)
 
 [use location](https://reactrouter.com/en/main/hooks/use-location)
+
+[Window Location](https://developer.mozilla.org/en-US/docs/Web/API/Window/location)
