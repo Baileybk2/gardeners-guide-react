@@ -14,29 +14,35 @@ const WaterForm = (props) => {
   useEffect(() => {
     const fetchPlant = async () => {
       const plantData = await plantService.show(plantId)
-      setFormData(plantData.whenToWater.find((water) => water._id === whenToWaterId))
+      setFormData(
+        plantData.whenToWater.find((water) => water._id === whenToWaterId)
+      )
     }
     if (plantId && whenToWaterId) fetchPlant()
   }, [plantId, whenToWaterId])
 
   console.log(whenToWaterId)
-  
+
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     if (plantId && whenToWaterId) {
       plantService.updateWater(plantId, whenToWaterId, formData)
+      const updatedPlant = await plantService.show(plantId)
+      setFormData(
+        updatedPlant.whenToWater.find((water) => water._id === whenToWaterId)
+      )
       navigate(`/plants/${plantId}`)
     } else {
       props.handleAddWater(formData)
+      setFormData({
+        dateOfDay: "",
+        conditionOfSoil: "",
+      })
     }
-    setFormData({ 
-        dateOfDay: "", 
-        conditionOfSoil: ""
-    })
   }
 
   return (

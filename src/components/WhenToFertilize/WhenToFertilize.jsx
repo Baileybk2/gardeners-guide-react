@@ -8,12 +8,16 @@ const FertForm = (props) => {
   })
   const navigate = useNavigate()
 
-  const { plantId, whenToFertilizeId } = useParams();
+  const { plantId, whenToFertilizeId } = useParams()
 
   useEffect(() => {
     const fetchPlant = async () => {
       const plantData = await plantService.show(plantId)
-      setFormData(plantData.whenToFertilize.find((fertilize) => fertilize._id === whenToFertilizeId))
+      setFormData(
+        plantData.whenToFertilize.find(
+          (fertilize) => fertilize._id === whenToFertilizeId
+        )
+      )
     }
     if (plantId && whenToFertilizeId) fetchPlant()
   }, [plantId, whenToFertilizeId])
@@ -22,15 +26,21 @@ const FertForm = (props) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     if (plantId && whenToFertilizeId) {
       plantService.updateFertilizer(plantId, whenToFertilizeId, formData)
+      const updatedPlant = await plantService.show(plantId)
+      setFormData(
+        updatedPlant.whenToFertilize.find(
+          (fertilize) => fertilize._id === whenToFertilizeId
+        )
+      )
       navigate(`/plants/${plantId}`)
     } else {
       props.handleAddFertilizer(formData)
+      setFormData({ dateOfDay: "" })
     }
-    setFormData({ dateOfDay: "" })
   }
 
   return (
