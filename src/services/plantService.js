@@ -84,7 +84,37 @@ const createWater = async (plantId, plantFormData) => {
   }
 }
 
-const createFertilzer = async (plantId, plantFormData) => {
+const updateWater = async (plantId, whenToWaterId, plantFormData) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${plantId}/water/${whenToWaterId}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(plantFormData),
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const deleteWater = async (plantId, whenToWaterId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${plantId}/water/${whenToWaterId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const createFertilizer = async (plantId, plantFormData) => {
   try {
     const res = await fetch(`${BASE_URL}/${plantId}/fertilize`, {
       method: "POST",
@@ -100,4 +130,46 @@ const createFertilzer = async (plantId, plantFormData) => {
   }
 }
 
-export { index, show, create, deletePlant, update, createWater, createFertilzer }
+const updateFertilizer = async (plantId, whenToFertilizeId, plantFormData) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${plantId}/fertilize/${whenToFertilizeId}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(plantFormData),
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const deleteFertilizer = async (plantId, whenToFertilizeId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${plantId}/fertilize/${whenToFertilizeId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export { 
+  index, 
+  show, 
+  create, 
+  deletePlant, 
+  update, 
+  createWater, 
+  updateWater, 
+  deleteWater, 
+  createFertilizer, 
+  updateFertilizer, 
+  deleteFertilizer
+ }

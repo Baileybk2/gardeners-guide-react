@@ -77,6 +77,14 @@ const App = () => {
                 path="/plants/:plantId/edit"
                 element={<PlantForm handleUpdatePlant={handleUpdatePlant} />}
               />
+              <Route
+                path="/plants/:plantId/fertilize/:whenToFertilizeId/edit"
+                element={<FertForm />}
+              />
+              <Route
+                path="/plants/:plantId/water/:whenToWaterId/edit"
+                element={<WaterForm />}
+              />
             </>
           ) : (
             <Route path="/" element={<Landing />} />

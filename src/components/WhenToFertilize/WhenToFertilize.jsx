@@ -1,11 +1,22 @@
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import * as plantService from "../../services/plantService"
 
 const FertForm = (props) => {
   const [formData, setFormData] = useState({
     dateOfDay: "",
   })
+  const navigate = useNavigate()
+
+  const { plantId, whenToFertilizeId } = useParams();
+
+  useEffect(() => {
+    const fetchPlant = async () => {
+      const plantData = await plantService.show(plantId)
+      setFormData(plantData.whenToFertilize.find((fertilize) => fertilize._id === whenToFertilizeId))
+    }
+    if (plantId && whenToFertilizeId) fetchPlant()
+  }, [plantId, whenToFertilizeId])
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
@@ -13,7 +24,12 @@ const FertForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    props.handleAddFertilizer(formData)
+    if (plantId && whenToFertilizeId) {
+      plantService.updateFertilizer(plantId, whenToFertilizeId, formData)
+      navigate(`/plants/${plantId}`)
+    } else {
+      props.handleAddFertilizer(formData)
+    }
     setFormData({ dateOfDay: "" })
   }
 
