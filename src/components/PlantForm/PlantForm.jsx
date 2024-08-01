@@ -43,8 +43,8 @@ const PlantForm = (props) => {
   return (
     <main>
       <form onSubmit={handleSubmit}>
+        <h2>Create a plant!</h2>
         <fieldset className="container">
-          <legend>Create a plant!</legend>
           <label htmlFor="name">Name:</label>
           <input
             required
@@ -65,6 +65,18 @@ const PlantForm = (props) => {
             value={formData.img}
             onChange={handleChange}
           />
+          <br />
+          <br />
+          <label htmlFor="indoorOutdoor">Indoor/Outdoor:</label>
+          <select
+            id="indoorOutdoor"
+            name="indoorOutdoor"
+            value={formData.indoorOutdoor}
+            onChange={handleChange}
+          >
+            <option value="Indoor">Indoor</option>
+            <option value="Outdoor">Outdoor</option>
+          </select>
           <br />
           <br />
           <label htmlFor="howMuchSun">Light (hrs/day):</label>
@@ -108,19 +120,7 @@ const PlantForm = (props) => {
           </select>
           <br />
           <br />
-          <label htmlFor="indoorOutdoor">Indoor/Outdoor:</label>
-          <select
-            id="indoorOutdoor"
-            name="indoorOutdoor"
-            value={formData.indoorOutdoor}
-            onChange={handleChange}
-          >
-            <option value="Indoor">Indoor</option>
-            <option value="Outdoor">Outdoor</option>
-          </select>
-          <br />
-          <br />
-          <label htmlFor="growTime">Grow Time:</label>
+          <label htmlFor="growTime">Grow Time (years to maturity):</label>
           <input
             type="text"
             id="growTime"
@@ -130,8 +130,8 @@ const PlantForm = (props) => {
           />
           <br />
           <br />
+          <button type="submit">Submit</button>
         </fieldset>
-        <button type="submit">Submit</button>
       </form>
     </main>
   )
