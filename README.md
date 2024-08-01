@@ -9,6 +9,8 @@ Currently, two official plugins are available:
 
 [<img src="src/assets/black-white-image-placeholder.png">](https://cdn-icons-png.flaticon.com/512/739/739249.png)
 
+[<img src ="src/assets/nicola-zhukov-YTgoKkpS5rg-unsplash.jpg">](https://unsplash.com/photos/a-close-up-of-a-large-green-leaf-YTgoKkpS5rg)
+
 ## Attributions 
 
 [String.prototype.match()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match)
@@ -16,3 +18,5 @@ Currently, two official plugins are available:
 [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
 
 [Symbol.match](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/match)
+
+[use location](https://reactrouter.com/en/main/hooks/use-location)
