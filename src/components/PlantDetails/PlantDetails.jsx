@@ -90,10 +90,10 @@ const PlantDetails = (props) => {
       <div className="container">
         <h1>{plant.name}</h1>
         <img src={plant.img} alt={plant.name} />
+        <p>Indoor/Outdoor: {plant.indoorOutdoor}</p>
         <p>Light (hrs/day): {plant.howMuchSun}</p>
         <p>Type of Light: {plant.typeOfLight}</p>
         <p>Best Season to Plant: {plant.bestSeasonToPlant}</p>
-        <p>Indoor/Outdoor: {plant.indoorOutdoor}</p>
         <p>Grow Time: {plant.growTime}</p>
 
         <section>
