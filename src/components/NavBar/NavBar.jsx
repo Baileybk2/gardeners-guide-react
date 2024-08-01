@@ -6,7 +6,7 @@ const NavBar = ({ handleSignout }) => {
   const user = useContext(AuthedUserContext)
   return (
     <>
-      {user ? (
+      {user && (
         <nav className="navbar">
           <ul>
             <li>
@@ -22,17 +22,6 @@ const NavBar = ({ handleSignout }) => {
               <Link to="" onClick={handleSignout}>
                 SIGN OUT
               </Link>
-            </li>
-          </ul>
-        </nav>
-      ) : (
-        <nav className="navbar">
-          <ul>
-            <li>
-              <Link to="/signin">Sign In</Link>
-            </li>
-            <li>
-              <Link to="/signup">Sign Up</Link>
             </li>
           </ul>
         </nav>

@@ -37,7 +37,7 @@ const SignupForm = (props) => {
   }
 
   return (
-    <main className="container">
+    <main>
       <h1>Sign Up</h1>
       <p>{message}</p>
       <form onSubmit={handleSubmit}>
@@ -62,7 +62,7 @@ const SignupForm = (props) => {
           />
         </div>
         <div>
-          <label htmlFor="confirm">Confirm Password:</label>
+          <label htmlFor="confirm"><span>&nbsp;&nbsp;Confirm</span>Password:</label>
           <input
             type="password"
             id="confirm"

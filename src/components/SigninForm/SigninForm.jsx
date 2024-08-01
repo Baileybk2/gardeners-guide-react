@@ -25,14 +25,15 @@ const SigninForm = (props) => {
       const user = await authService.signin(formData)
       console.log(user)
       props.setUser(user)
-      navigate("/")
+      // is attributes section
+      window.location.reload()
     } catch (err) {
       updateMessage(err.message)
     }
   }
 
   return (
-    <main className="container">
+    <main>
       <h1>Sign In</h1>
       <p>{message}</p>
       <form autoComplete="off" onSubmit={handleSubmit}>
