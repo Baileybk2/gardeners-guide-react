@@ -25,7 +25,7 @@ const SigninForm = (props) => {
       const user = await authService.signin(formData)
       console.log(user)
       props.setUser(user)
-      // is attributes section
+      // see attributes section
       window.location.reload()
     } catch (err) {
       updateMessage(err.message)
@@ -38,7 +38,7 @@ const SigninForm = (props) => {
       <p>{message}</p>
       <form autoComplete="off" onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="email">Username:</label>
+          <label className="Bold" htmlFor="email">Username:</label>
           <input
             type="text"
             autoComplete="off"
@@ -49,7 +49,7 @@ const SigninForm = (props) => {
           />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
+          <label className="Bold" htmlFor="password">Password:</label>
           <input
             type="password"
             autoComplete="off"
