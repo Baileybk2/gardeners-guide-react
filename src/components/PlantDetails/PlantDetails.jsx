@@ -104,19 +104,21 @@ const PlantDetails = (props) => {
                 {/* see attributions section  */}
                 {fertilize.dateOfDay.match(/.{10}/)}
               </p>
+    
               <div>
                 <Link to={`/plants/${plantId}/fertilize/${fertilize._id}/edit`}>
-                  <button>Edit Fertilizer Schedule</button>
+                  <button className="buttons1" >Edit Fertilizer Schedule</button>
                 </Link>
-                <button onClick={() => handleDeleteFertilizer(fertilize._id)}>
+                <button className="buttons" onClick={() => handleDeleteFertilizer(fertilize._id)}>
                   Delete Fertilizer Schedule
                 </button>
               </div>
             </article>
+
           ))}
           {!plant.whenToFertilize.length && (
             <div>
-              <button onClick={toggleFertVisibility}>
+              <button className="buttons" onClick={toggleFertVisibility}>
                 Add Fertilizer Schedule
               </button>
               {isFertFormVisible && (
@@ -136,9 +138,9 @@ const PlantDetails = (props) => {
               <p>Notes: {water.conditionOfSoil}</p>
               <div>
                 <Link to={`/plants/${plantId}/water/${water._id}/edit`}>
-                  <button>Edit Water Schedule</button>
+                  <button className="buttons">Edit Water Schedule</button>
                 </Link>
-                <button onClick={() => handleDeleteWater(water._id)}>
+                <button className="buttons" onClick={() => handleDeleteWater(water._id)}>
                   Delete Water Schedule
                 </button>
               </div>
@@ -146,7 +148,7 @@ const PlantDetails = (props) => {
           ))}
           {!plant.whenToWater.length && (
             <div>
-              <button onClick={toggleWaterVisibility}>
+              <button className="buttons" onClick={toggleWaterVisibility}>
                 Add Water Schedule
               </button>
               {isWaterFormVisible && (
@@ -155,9 +157,10 @@ const PlantDetails = (props) => {
             </div>
           )}
         </section>
-
-        <button><Link to={`/plants/${plantId}/edit`}>Edit Plant</Link></button>
-        <button onClick={() => props.handleDeletePlant(plantId)}>Delete</button>
+        <span>
+        <Link to={`/plants/${plantId}/edit`}><button className="buttons">Edit Plant</button></Link>
+        <button className="buttons" onClick={() => props.handleDeletePlant(plantId)}>Delete</button>
+        </span>
       </div>
     </main>
   )
