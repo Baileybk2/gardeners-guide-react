@@ -14,9 +14,12 @@ const PlantList = (props) => {
       <main className="container">
         {props.plants.map((plant, index) => (
           <Link key={index} to={`/plants/${plant._id}`}>
-            <h2>
-              {plant.name} <img src={plant.img} alt={plant.name} />
-            </h2>
+          <div className="plantContainer">
+            <img src={plant.img} alt={plant.name} className="image"/>
+              <div className="midTransition">
+                <div className="plantName">{plant.name}</div>
+              </div>
+          </div>
           </Link>
         ))}
       </main>

@@ -19,9 +19,11 @@ a
   
 
 img 
-  width: 20%
+  width: 150px
+  height: 150px
   border: 2px solid black 
   border-radius: 25px
+  object-fit: cover
 h2 
   color: #F8F9F5
 
@@ -144,3 +146,32 @@ span
 
 .Bold
   font-weight: bolder
+
+
+
+.plantContainer
+  position: relative
+  width: 50%
+.image
+  opacity: 1
+  display: block
+  transition: .5s ease
+  backface-visibility: hidden
+.midTransition
+  transition: .5s ease
+  opacity: 0
+  position: absolute
+  top: 100%
+  left: 100%
+  transform: translate(-50%, -175%)
+  text-align: center
+
+.plantContainer:hover .image
+  opacity: 0.3
+.plantContainer:hover .midTransition
+  opacity: 1
+.plantName
+  background-color: black
+  color: white
+  font-size: 16px
+  padding: 16px 16px
