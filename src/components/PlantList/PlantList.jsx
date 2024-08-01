@@ -11,7 +11,7 @@ const PlantList = (props) => {
   return (
     <>
       <h1 style={fontColor2}>Your Plants</h1>
-      <main className="container">
+      <main className="container-list">
         {props.plants.map((plant, index) => (
           <Link key={index} to={`/plants/${plant._id}`}>
           <div className="plantContainer">
