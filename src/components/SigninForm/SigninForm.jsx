@@ -58,7 +58,7 @@ const SigninForm = (props) => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="buttons">
           <button>Log In</button>
           <Link to="/">
             <button>Cancel</button>
