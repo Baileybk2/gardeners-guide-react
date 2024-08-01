@@ -24,7 +24,7 @@ const SignupForm = (props) => {
     try {
       const newUserResponse = await authService.signup(formData)
       props.setUser(newUserResponse.user)
-      navigate("/")
+      window.location.reload()
     } catch (err) {
       updateMessage(err.message)
     }
@@ -42,7 +42,7 @@ const SignupForm = (props) => {
       <p>{message}</p>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">Username:</label>
+          <label className="Bold" htmlFor="username">Username:</label>
           <input
             type="text"
             id="name"
@@ -52,7 +52,7 @@ const SignupForm = (props) => {
           />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
+          <label className="Bold" htmlFor="password">Password:</label>
           <input
             type="password"
             id="password"
@@ -61,8 +61,8 @@ const SignupForm = (props) => {
             onChange={handleChange}
           />
         </div>
-        <div>
-          <label htmlFor="confirm"><span>&nbsp;&nbsp;Confirm</span>Password:</label>
+        <div >
+          <label className="Bold" htmlFor="confirm"><span>&nbsp;&nbsp;Confirm</span>Password:</label>
           <input
             type="password"
             id="confirm"
