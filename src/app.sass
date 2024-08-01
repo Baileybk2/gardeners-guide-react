@@ -1,6 +1,5 @@
 @import 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap'
 
-
 #root 
   width: 100%
   margin: 0 auto
@@ -17,16 +16,15 @@ a
   text-decoration: none
   color: #F8F9F5
   
-
 img 
   width: 150px
   height: 150px
   border: 2px solid black 
   border-radius: 25px
   object-fit: cover
+
 h2 
   color: #F8F9F5
-
 
 .flex-container 
   display: flex
@@ -36,6 +34,7 @@ h2
 .container 
   background-color: #B1B5A5
   border-radius: 25px
+  padding: 20px
   border: solid 2px black
   display: flex
   flex-direction: column
@@ -67,7 +66,6 @@ h2
   padding-bottom: 16px
   padding-left: 25px
   padding-right: 25px
-  margin-top: 20px
   box-shadow: 5px 5px 10px #1f3719
 
 .container-plant
@@ -79,7 +77,7 @@ h2
   align-items: center
   margin: auto
   width: fit-content
-  padding: 10px
+  padding: 20px
   box-shadow: 5px 5px 10px #1f3719
 
 .form-center 
@@ -107,7 +105,6 @@ h2
       li
         margin: 0 15px
         font-weight: 600
-
       
 .buttons 
   display: flex
@@ -147,9 +144,7 @@ textarea
   margin-right: 16px
   
 .notes
-
  margin-left: 16px
-
 
 .left
   display: flex
@@ -162,16 +157,17 @@ span
 .Bold
   font-weight: bolder
 
-
-
 .plantContainer
   position: relative
   width: 50%
+
 .image
   opacity: 1
   display: block
   transition: .5s ease
-  backface-visibility: hidden
+  margin-bottom: 20px
+  margin-top: 20px
+
 .midTransition
   transition: .5s ease
   opacity: 0
@@ -183,10 +179,13 @@ span
 
 .plantContainer:hover .image
   opacity: 0.3
+
 .plantContainer:hover .midTransition
   opacity: 1
+
 .plantName
-  background-color: black
-  color: white
+  background-color: #153313
+  color: #f8f9f5
   font-size: 16px
+  border-radius: 25px
   padding: 16px 16px
