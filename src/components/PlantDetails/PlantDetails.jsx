@@ -156,7 +156,7 @@ const PlantDetails = (props) => {
           )}
         </section>
 
-        <Link to={`/plants/${plantId}/edit`}>Edit Plant</Link>
+        <button><Link to={`/plants/${plantId}/edit`}>Edit Plant</Link></button>
         <button onClick={() => props.handleDeletePlant(plantId)}>Delete</button>
       </div>
     </main>
