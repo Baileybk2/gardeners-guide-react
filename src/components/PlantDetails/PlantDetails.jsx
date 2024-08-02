@@ -82,19 +82,30 @@ const PlantDetails = (props) => {
     fetchPlant()
   }
 
-  console.log("plant state:", plant)
-
   if (!plant) return <main>Loading...</main>
   return (
     <main className="flex-container">
       <div className="container">
         <h1>{plant.name}</h1>
         <img src={plant.img} alt={plant.name} />
-        <p><span className="Bold">Indoor/Outdoor:</span>{plant.indoorOutdoor}</p>
-        <p><span className="Bold">Light (hrs/day):</span>{plant.howMuchSun}</p>
-        <p><span className="Bold">Type of Light:</span> {plant.typeOfLight}</p>
-        <p><span className="Bold">Best Season to Plant:</span> {plant.bestSeasonToPlant}</p>
-        <p><span className="Bold">Grow Time:</span> {plant.growTime}</p>
+        <p>
+          <span className="Bold">Indoor/Outdoor:</span>
+          {plant.indoorOutdoor}
+        </p>
+        <p>
+          <span className="Bold">Light (hrs/day):</span>
+          {plant.howMuchSun}
+        </p>
+        <p>
+          <span className="Bold">Type of Light:</span> {plant.typeOfLight}
+        </p>
+        <p>
+          <span className="Bold">Best Season to Plant:</span>{" "}
+          {plant.bestSeasonToPlant}
+        </p>
+        <p>
+          <span className="Bold">Grow Time:</span> {plant.growTime}
+        </p>
 
         <section>
           <h4>When to Fertilize:</h4>
@@ -104,17 +115,19 @@ const PlantDetails = (props) => {
                 {/* see attributions section  */}
                 {fertilize.dateOfDay.match(/.{10}/)}
               </p>
-    
+
               <div>
                 <Link to={`/plants/${plantId}/fertilize/${fertilize._id}/edit`}>
-                  <button className="buttons1" >Edit Fertilizer Schedule</button>
+                  <button className="buttons1">Edit Fertilizer Schedule</button>
                 </Link>
-                <button className="buttons" onClick={() => handleDeleteFertilizer(fertilize._id)}>
+                <button
+                  className="buttons"
+                  onClick={() => handleDeleteFertilizer(fertilize._id)}
+                >
                   Delete Fertilizer Schedule
                 </button>
               </div>
             </article>
-
           ))}
           {!plant.whenToFertilize.length && (
             <div>
@@ -140,7 +153,10 @@ const PlantDetails = (props) => {
                 <Link to={`/plants/${plantId}/water/${water._id}/edit`}>
                   <button className="buttons1">Edit Water Schedule</button>
                 </Link>
-                <button className="buttons" onClick={() => handleDeleteWater(water._id)}>
+                <button
+                  className="buttons"
+                  onClick={() => handleDeleteWater(water._id)}
+                >
                   Delete Water Schedule
                 </button>
               </div>
@@ -148,22 +164,29 @@ const PlantDetails = (props) => {
           ))}
           {!plant.whenToWater.length && (
             <>
-            <div className="addwater">
-              <button className="buttons" onClick={toggleWaterVisibility}>
-                Add Water Schedule
-              </button>
-            </div>
+              <div className="addwater">
+                <button className="buttons" onClick={toggleWaterVisibility}>
+                  Add Water Schedule
+                </button>
+              </div>
               <div className="waterform">
-              {isWaterFormVisible && (
-                <WaterForm handleAddWater={handleAddWater} />
-              )}
-            </div>
+                {isWaterFormVisible && (
+                  <WaterForm handleAddWater={handleAddWater} />
+                )}
+              </div>
             </>
           )}
         </section>
         <span>
-        <Link to={`/plants/${plantId}/edit`}><button className="buttons">Edit Plant</button></Link>
-        <button className="buttons" onClick={() => props.handleDeletePlant(plantId)}>Delete</button>
+          <Link to={`/plants/${plantId}/edit`}>
+            <button className="buttons">Edit Plant</button>
+          </Link>
+          <button
+            className="buttons"
+            onClick={() => props.handleDeletePlant(plantId)}
+          >
+            Delete
+          </button>
         </span>
       </div>
     </main>
