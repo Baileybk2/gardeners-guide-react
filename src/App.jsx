@@ -38,7 +38,7 @@ const App = () => {
 
   useEffect(() => {
     if (location.pathname === '/') {
-      document.body.style.backgroundImage = "url('src/assets/nicola-zhukov-YTgoKkpS5rg-unsplash.jpg')";
+      document.body.style.backgroundImage = "url('/assets/nicola-zhukov-YTgoKkpS5rg-unsplash.jpg')";
       document.body.style.backgroundSize = 'cover';
       document.body.style.backgroundColor = ''; // Reset background color if it was previously set
     } else {

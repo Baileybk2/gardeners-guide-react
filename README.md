@@ -14,9 +14,9 @@ Gardener's guide is an app for plant minded people to keep track of all the plan
 
 ## Attributions
 
-[<img src="src/assets/black-white-image-placeholder.png">](https://cdn-icons-png.flaticon.com/512/739/739249.png)
+[<img src="public/assets/black-white-image-placeholder.png">](https://cdn-icons-png.flaticon.com/512/739/739249.png)
 
-[<img src ="src/assets/nicola-zhukov-YTgoKkpS5rg-unsplash.jpg">](https://unsplash.com/photos/a-close-up-of-a-large-green-leaf-YTgoKkpS5rg)
+[<img src ="public/assets/nicola-zhukov-YTgoKkpS5rg-unsplash.jpg">](https://unsplash.com/photos/a-close-up-of-a-large-green-leaf-YTgoKkpS5rg)
 
 [String.prototype.match()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match)
 
