@@ -46,9 +46,8 @@ const FertForm = (props) => {
   return (
     <main className="container">
       <form onSubmit={handleSubmit}>
-        
-          <h3>When to Fertilize!</h3>
-          <label htmlFor="dateOfDay">Date: &nbsp;</label>
+        <h3>When to Fertilize!</h3>
+        <label htmlFor="dateOfDay">Date: &nbsp;</label>
           <input
             required
             type="date"
@@ -57,8 +56,7 @@ const FertForm = (props) => {
             value={formData.dateOfDay}
             onChange={handleChange}
           />
-          <button type="submit" className="submit">Submit</button>
-      
+        <button type="submit" className="submit">Submit</button>
       </form>
     </main>
   )

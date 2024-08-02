@@ -3,7 +3,6 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
 import * as authService from "../../services/authService"
-import * as plantService from "../../services/plantService"
 
 import SigninForm from "../SigninForm/SigninForm"
 import SignupForm from "../SignupForm/SignupForm"
