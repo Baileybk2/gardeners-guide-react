@@ -1,5 +1,5 @@
 # Gardener's Guide
-<img src="src/assets/app_screenshot.png" />
+<img src="public/assets/app_screenshot.png" />
 
 ## What is it?
 
