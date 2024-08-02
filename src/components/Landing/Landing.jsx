@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
@@ -9,7 +8,7 @@ import SignupForm from "../SignupForm/SignupForm"
 
 const Landing = () => {
   const navigate = useNavigate()
-  const [user, setUser] = useState(authService.getUser()) // using the method from authservice
+  const [user, setUser] = useState(authService.getUser())
   const [isSigninFormVisible, setIsSigninFormVisible] = useState(false)
   const [isSignupFormVisible, setIsSignupFormVisible] = useState(false)
 
@@ -36,7 +35,7 @@ const Landing = () => {
       setIsSignupFormVisible(false)
     }
   }
-  
+
   return (
     <main>
       <div className="container">
@@ -44,21 +43,19 @@ const Landing = () => {
         <h3>Get started by signing in or signing up.</h3>
       </div>
       <div>
-      {isSigninFormVisible ? (
+        {isSigninFormVisible ? (
           <div className="container-sign">
             <button onClick={toggleSignupVisibility}>Sign Up</button>
-            <SigninForm setUser={setUser}/>
+            <SigninForm setUser={setUser} />
           </div>
-      ) : (
-        <div className="container-sign">
-        <button onClick={toggleSignInVisibility}>Sign In</button>
-        <SignupForm setUser={setUser}/>
-        </div>
-      )}
+        ) : (
+          <div className="container-sign">
+            <button onClick={toggleSignInVisibility}>Sign In</button>
+            <SignupForm setUser={setUser} />
+          </div>
+        )}
       </div>
     </main>
-  
   )
 }
 export default Landing
-
